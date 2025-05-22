@@ -1,0 +1,78 @@
+.text-block-hero {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 3rem 0;
+    overflow: hidden;
+}
+
+.text-block-hero h1 {
+    font-size: 5.5rem;
+    font-weight: 600;
+    line-height: 110%;
+    width: 65%;
+    background: linear-gradient(135deg, #00cc99 0%, #0066cc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    position: relative;
+    animation: fadeInUp 1s ease-out;
+}
+
+.text-block-hero h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #0066cc, #00cc99);
+    border-radius: 2px;
+}
+
+.text-block-hero p {
+    line-height: 1.8;
+    font-size: 1.5rem;
+    width: 80%;
+    margin-top: 2rem;
+    color: #555;
+    animation: fadeInUp 1s ease-out 0.3s both;
+    letter-spacing: 0.02em;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .text-block-hero {
+        padding: 2rem 0;
+    }
+    
+    .text-block-hero h1,
+    .text-block-hero p {
+        width: 100%;
+    }
+
+    .text-block-hero h1 {
+        font-size: 3rem;
+    }
+
+    .text-block-hero p {
+        font-size: 1.1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .text-block-hero h1::after {
+        width: 60px;
+        height: 3px;
+    }
+}
