@@ -18,7 +18,7 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo d-flex justify-content-center">
-                        <a href="/"><h1><u>Ecommerce</u></h1></a>
+                        <a href="/"><h1><u>Indrapura Komputer</u></h1></a>
                     </div>
                     <h2 class="text-center">Masuk.</h2>
                     <form method="POST" action="{{ route('login') }}">
