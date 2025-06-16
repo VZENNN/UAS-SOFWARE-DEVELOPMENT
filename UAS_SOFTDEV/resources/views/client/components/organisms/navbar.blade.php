@@ -348,6 +348,62 @@
     opacity: 1;
     visibility: visible;
   }
+  .user-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .user-icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  
+  .user-icon:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .user-dropdown-content {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: white;
+    min-width: 180px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    z-index: 101;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+  }
+  
+  .user-dropdown-content.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+  }
+  
+  .dropdown-item:hover {
+    background-color: rgba(67, 94, 190, 0.1);
+    color: #435ebe;
+  }
 </style>
 @endprepend
 
@@ -383,6 +439,24 @@
 
 @prepend('js')
 <script>
+  const userDropdownToggle = document.getElementById("userDropdownToggle");
+  const userDropdownMenu = document.getElementById("userDropdownMenu");
+  
+  if (userDropdownToggle) {
+    userDropdownToggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+      userDropdownMenu.classList.toggle("show");
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (event) => {
+      if (userDropdownMenu.classList.contains("show") && 
+          !userDropdownToggle.contains(event.target) && 
+          !userDropdownMenu.contains(event.target)) {
+        userDropdownMenu.classList.remove("show");
+      }
+    });
+  }
   const navMenu = document.getElementById("nav-menu");
   const navToggle = document.getElementById("nav-toggle");
   const navClose = document.getElementById("nav-close");

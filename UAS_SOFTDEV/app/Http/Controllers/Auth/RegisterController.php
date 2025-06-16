@@ -24,6 +24,11 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    protected function redirectTo()
+    {
+        return User::count() > 1 ? '/' : $this->redirectTo;
+    }
+
     /**
      * Where to redirect users after registration.
      *
@@ -64,10 +69,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $isFirstUser = User::count() === 0;
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role' => $isFirstUser ? 1 : 0, 
         ]);
     }
 }

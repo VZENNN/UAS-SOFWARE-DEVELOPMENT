@@ -37,8 +37,8 @@ class HomeController extends Controller
                 'title' => 'Dashboard',
                 'product' => Product::all()->count(),
                 'category' => Category::all()->count(),
-                'sales' => Order::where('status', 5)->sum('total'),
-                'order' => Order::where('status', 5)->count(),
+                'sales' => Order::sum('total'),
+                'order' => Order::count(),
                 'newOrder' => Order::all()->sortByDesc('id')->take(5)
             ];
 

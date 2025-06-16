@@ -8,8 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\Admin\\AdminController' => $baseDir . '/app/Http/Controllers/Admin/AdminController.php',
     'App\\Http\\Controllers\\Admin\\CategoryController' => $baseDir . '/app/Http/Controllers/Admin/CategoryController.php',
     'App\\Http\\Controllers\\Admin\\DiscountController' => $baseDir . '/app/Http/Controllers/Admin/DiscountController.php',
+    'App\\Http\\Controllers\\Admin\\FaqController' => $baseDir . '/app/Http/Controllers/Admin/FaqController.php',
     'App\\Http\\Controllers\\Admin\\OrderController' => $baseDir . '/app/Http/Controllers/Admin/OrderController.php',
     'App\\Http\\Controllers\\Admin\\ProductController' => $baseDir . '/app/Http/Controllers/Admin/ProductController.php',
     'App\\Http\\Controllers\\Admin\\ShopController' => $baseDir . '/app/Http/Controllers/Admin/ShopController.php',
@@ -36,6 +38,7 @@ return array(
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\City' => $baseDir . '/app/Models/City.php',
     'App\\Models\\Discount' => $baseDir . '/app/Models/Discount.php',
+    'App\\Models\\Faq' => $baseDir . '/app/Models/Faq.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
     'App\\Models\\OrderDetail' => $baseDir . '/app/Models/OrderDetail.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',

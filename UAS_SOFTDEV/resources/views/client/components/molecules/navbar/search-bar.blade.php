@@ -11,9 +11,29 @@
         </button>
     </div>
 </form>
-<a href="{{ route('clientCarts') }}" class="text-decoration-none">
+<a href="{{ route('clientCarts') }}" class="text-decoration-none" style="margin-right: 20px;">
     <div class="cart">
         <span class="badge bg-dark count" id="cartCount">{{ count((array) session('cart')) }}</span>
         <i class="bi bi-cart2 mt-2"></i>
     </div>
 </a>
+@if(Auth::check())
+    <div class="user-dropdown">
+        <div class="user-icon" id="userDropdownToggle">
+            <i class="bi bi-person-circle mt-2" style="font-size: 24px;"></i>
+        </div>
+        <div class="user-dropdown-content" id="userDropdownMenu">
+            <a href="{{ route('clientOrderHistory') }}" class="dropdown-item">
+                <i class="bi bi-box me-2"></i>Cek Pesanan
+            </a>
+            <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="bi bi-box-arrow-right me-2"></i>Log out
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
+    </div>
+@else
+    <a href="{{ route('register') }}" class="btn btn-outline-primary">Daftar</a>
+@endif

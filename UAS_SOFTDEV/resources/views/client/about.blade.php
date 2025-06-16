@@ -4,6 +4,6 @@
   <x-molecules.about.address />
   <x-molecules.about.shipping-returns />
   <x-molecules.about.warranty />
-  <x-molecules.about.f-a-q />
+  <x-molecules.about.f-a-q :faqs="$faqs" />
   <x-organisms.footer :shop="$shop"/>
 </x-template.layout>

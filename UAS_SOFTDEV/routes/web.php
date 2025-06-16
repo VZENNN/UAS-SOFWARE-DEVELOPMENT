@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DiscountController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Client\ClientController;
@@ -44,6 +46,7 @@ Route::controller(ClientController::class)->group(function(){
     Route::post('/check-order-status', 'checkOrderStatus')->name('clientCheckOrderStatus');
     Route::get('/about', 'about')->name('clientAbout');
     Route::post('/cek-ongkir', [OngkirController::class, 'checkShippingCost']);
+    Route::get('/history', 'userOrders')->name('clientOrderHistory');
 });
 
 Route::get('/provinsi', [OngkirController::class, 'getProvinces']);
@@ -94,6 +97,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/category/delete/{id}/{path}', 'delete')->name('categoryDelete');
     });
 
+    Route::get('/admin/faq', [FaqController::class, 'index'])->name('faqIndex');
+Route::get('/admin/faq/create', [FaqController::class, 'create'])->name('faqCreate');
+Route::post('/admin/faq', [FaqController::class, 'store'])->name('faqStore');
+Route::get('/admin/faq/edit/{id}', [FaqController::class, 'edit'])->name('faqEdit');
+Route::put('/admin/faq/{id}', [FaqController::class, 'update'])->name('faqUpdate');
+Route::get('/admin/faq/delete/{id}', [FaqController::class, 'destroy'])->name('faqDelete');
+
     // Product
     Route::controller(ProductController::class)->group(function() {
         Route::get('/admin/products', 'index')->name('products');
@@ -116,6 +126,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/order/update-status/{order_code}', 'updateStatus')->name('orderUpdateStatus');
         Route::get('/admin/order/delete/{order_code}', 'delete')->name('orderDelete');
     });
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('/create', [AdminController::class, 'create'])->name('create');
+    Route::post('/', [AdminController::class, 'store'])->name('store');
+    Route::get('/{id}/edit', [AdminController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [AdminController::class, 'update'])->name('update');
+    Route::get('/{id}/delete', [AdminController::class, 'destroy'])->name('destroy');
 });
 
 Route::post('/verify-discount', [ClientController::class, 'verifyDiscount'])->name('verifyDiscount');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Discount;
+use App\Models\Faq;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\Order;
@@ -66,6 +67,27 @@ class ClientController extends Controller
             return view('client.productSearch', $data);
 
         }
+    }
+
+    public function userOrders()
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+
+        $userId = auth()->id();
+
+        $orders = Order::where('user_id', $userId)
+                      ->orderBy('created_at', 'desc')
+                      ->get();
+
+        $data = [
+            'shop' => Shop::first(),
+            'orders' => $orders,
+            'title' => 'Pesanan Saya'
+        ];
+
+        return view('client.check-order-user', $data);
     }
 
     public function category(){
@@ -175,25 +197,26 @@ class ClientController extends Controller
             $discount_code = null;
             $discount_amount = 0;
             
-            if ($request->discount_code && $request->discount_amount > 0) {
-                $discount = \App\Models\Discount::where('code', $request->discount_code)
-                    ->where('qty', '>', 0)
-                    ->first();
-                
-                if ($discount) {
-                    $discount_id = $discount->id;
-                    $discount_code = $discount->code;
-                    $discount_amount = intval($request->discount_amount);
-                    
-                    $total -= $discount_amount;
-                    
-                    $discount->qty -= 1;
-                    $discount->save();
-                }
-            }
+            if ($request->discount_code) {
+    $discount = \App\Models\Discount::where('code', $request->discount_code)
+        ->where('qty', '>', 0)
+        ->first();
+
+    if ($discount) {
+        $discount_id = $discount->id;
+        $discount_code = $discount->code;
+
+        $discount_amount = intval(($total * $discount->discount) / 100);
+        $total -= $discount_amount;
+
+        $discount->qty -= 1;
+        $discount->save();
+    }
+}
 
             Order::create([
                 'shop_id' => Shop::first()->id,
+                'user_id' => auth()->id(),
                 'order_code' => $order_code,
                 'name' => $request->name,
                 'phone' => $phone,
@@ -303,14 +326,13 @@ class ClientController extends Controller
         return view('client.check-order', $data);
     }
 
-    public function about(){
-        $data = [
-            'shop' => Shop::first(),
-            'title' => 'About'
-        ];
+    public function about() {
+    $shop = Shop::first();
+    $title = 'About';
+    $faqs = Faq::all();
 
-        return view('client.about', $data);
-    }
+    return view('client.about', compact('shop', 'title', 'faqs'));
+}
 
     public function verifyDiscount(Request $request)
     {

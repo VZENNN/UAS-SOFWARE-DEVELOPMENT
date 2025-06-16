@@ -547,8 +547,10 @@ class ComposerStaticInitd9c5f10fed870008b9344f9b02b0fdd9
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
         'App\\Http\\Controllers\\Admin\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoryController.php',
         'App\\Http\\Controllers\\Admin\\DiscountController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/DiscountController.php',
+        'App\\Http\\Controllers\\Admin\\FaqController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/FaqController.php',
         'App\\Http\\Controllers\\Admin\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/OrderController.php',
         'App\\Http\\Controllers\\Admin\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductController.php',
         'App\\Http\\Controllers\\Admin\\ShopController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ShopController.php',
@@ -575,6 +577,7 @@ class ComposerStaticInitd9c5f10fed870008b9344f9b02b0fdd9
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\City' => __DIR__ . '/../..' . '/app/Models/City.php',
         'App\\Models\\Discount' => __DIR__ . '/../..' . '/app/Models/Discount.php',
+        'App\\Models\\Faq' => __DIR__ . '/../..' . '/app/Models/Faq.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
         'App\\Models\\OrderDetail' => __DIR__ . '/../..' . '/app/Models/OrderDetail.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',

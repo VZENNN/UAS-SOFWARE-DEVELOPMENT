@@ -1,8 +1,3 @@
-<?php
-    use App\Models\User;
-    if (!User::exists()){
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,10 +146,3 @@
         </div>
 </body>
 </html>
-<?php
-    }else{
-        echo '
-        <script>window.location = "/login";</script>
-        ';
-    }
-?>

@@ -153,6 +153,7 @@
                 discount_code: appliedDiscountCode
             };
         
+            console.log('Discount code being sent:', formData.discount_code);
             fetch("{{ route('clientCheckoutSave') }}", {
                 method: "POST",
                 headers: {

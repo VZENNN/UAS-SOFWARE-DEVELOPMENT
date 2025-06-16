@@ -47,6 +47,13 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item {{ request()->routeIs('admin.index') || request()->routeIs('categoryCreate') ? 'active' : '' }}">
+                            <a href="{{route('admin.index')}}" class='sidebar-link'>
+                                <i class="bi bi-person"></i>
+                                <span>Admin</span>
+                            </a>
+                        </li>
+
                         <li class="sidebar-item {{ request()->routeIs('category') || request()->routeIs('categoryCreate') ? 'active' : '' }}">
                             <a href="{{route('category')}}" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
@@ -80,6 +87,13 @@
                             <a href="{{route('shopDetail')}}" class='sidebar-link'>
                                 <i class="bi bi-shop"></i>
                                 <span>Toko</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item {{ request()->routeIs('faqIndex') ? 'active' : '' }}">
+                            <a href="{{route('faqIndex')}}" class='sidebar-link'>
+                                <i class="bi bi-question-circle"></i>
+                                <span>Faq</span>
                             </a>
                         </li>
 
